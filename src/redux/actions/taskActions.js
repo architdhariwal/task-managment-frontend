@@ -1,7 +1,7 @@
 import axios from "axios";
 import { fetchTasks as fetchTasksAction, createTask as createTaskAction, updateTask as updateTaskAction, deleteTask as deleteTaskAction } from '../reducers/taskReducer';
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = process.env.REACT_APP_API_URL || "https://task-management-backend-rc2q.onrender.com/api";
 const config = {
   headers: {
     "Content-Type": "application/json",
