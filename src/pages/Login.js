@@ -91,6 +91,12 @@ const Login = () => {
           >
             Login
           </Button>
+          <Typography align="center" sx={{ mt: 2 }}>
+            Don't have an account?{" "}
+            <Link component={RouterLink} to="/signup">
+              Sign Up
+            </Link>
+          </Typography>
           <Divider sx={{ my: 2 }}>OR</Divider>
           <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
             <GoogleLogin
@@ -103,12 +109,6 @@ const Login = () => {
               width="100%"
             />
           </Box>
-          <Typography align="center" sx={{ mt: 2 }}>
-            Don't have an account?{" "}
-            <Link component={RouterLink} to="/signup">
-              Sign Up
-            </Link>
-          </Typography>
         </Box>
       </Paper>
     </Container>
