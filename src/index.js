@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import App from "./App";
 import store from "./redux/store";
 
@@ -13,7 +14,7 @@ const theme = createTheme({
       main: "#1976d2",
     },
     secondary: {
-      main: '#ffffff', // White for contrast
+      main: '#ffffff', 
     },
   },
 });
@@ -26,7 +27,9 @@ root.render(
       <Router>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
             <App />
+          </GoogleOAuthProvider>
         </ThemeProvider>
       </Router>
     </Provider>

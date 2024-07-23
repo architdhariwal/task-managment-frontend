@@ -43,18 +43,6 @@ export const googleLogin = (credential) => async (dispatch) => {
   }
 };
 
-export const googleSignup = (credential) => async (dispatch) => {
-  try {
-    const res = await axios.post(`${API_URL}/auth/google-signup`, {
-      credential,
-    });
-    return res.data;
-  } catch (error) {
-    console.error("Google signup error:", error);
-    throw error;
-  }
-};
-
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
   dispatch({ type: LOGOUT });

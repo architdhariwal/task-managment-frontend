@@ -10,9 +10,11 @@ import {
   Box, 
   useTheme, 
   useMediaQuery,
-  Paper
+  Paper,
+  Divider
 } from "@mui/material";
-import { login } from "../redux/actions/authActions";
+import { login, googleLogin } from "../redux/actions/authActions";
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -32,6 +34,14 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
+  };
+
+  const handleGoogleSuccess = (credentialResponse) => {
+    dispatch(googleLogin(credentialResponse.credential));
+  };
+
+  const handleGoogleError = () => {
+    console.log('Google Sign In was unsuccessful. Try again later');
   };
 
   return (
@@ -81,6 +91,18 @@ const Login = () => {
           >
             Login
           </Button>
+          <Divider sx={{ my: 2 }}>OR</Divider>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              theme="filled_blue"
+              shape="rectangular"
+              size="large"
+              logo_alignment="left"
+              width="100%"
+            />
+          </Box>
           <Typography align="center" sx={{ mt: 2 }}>
             Don't have an account?{" "}
             <Link component={RouterLink} to="/signup">
